@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace 'com.elopez.pokedex'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.elopez.pokedex"
@@ -28,6 +28,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.0"
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -40,7 +43,6 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.4.30'
     }
     packagingOptions {
         resources {
@@ -92,15 +94,12 @@ dependencies {
     implementation "com.google.accompanist:accompanist-coil:0.7.0"
 
     //Dagger - Hilt
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-android-compiler:2.33-beta"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-    kapt "androidx.hilt:hilt-compiler:1.0.0"
-    implementation 'androidx.hilt:hilt-navigation-compose:1.1.0-alpha01'
-
-    implementation 'androidx.palette:palette-ktx:1.0.0'
+    implementation 'com.google.dagger:hilt-android:2.44'
+    implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
+    kapt 'com.google.dagger:hilt-compiler:2.44'
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-alpha01'
 }
 
 kapt{
-    correctErrorTypes true
+    correctErrorTypes = true
 }
