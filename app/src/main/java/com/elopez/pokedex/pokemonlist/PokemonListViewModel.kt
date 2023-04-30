@@ -91,6 +91,8 @@ class PokemonListViewMode @Inject constructor(
                     loadError.value = result.message!!
                     isLoading.value = false
                 }
+
+                else -> {}
             }
         }
     }

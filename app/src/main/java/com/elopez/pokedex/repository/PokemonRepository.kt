@@ -5,6 +5,7 @@ import com.elopez.pokedex.data.remote.responses.Pokemon
 import com.elopez.pokedex.data.remote.responses.PokemonList
 import com.elopez.pokedex.util.Resource
 import dagger.hilt.android.scopes.ActivityScoped
+import java.util.Locale
 import javax.inject.Inject
 
 @ActivityScoped
@@ -23,9 +24,9 @@ class PokemonRepository @Inject constructor(
 
     suspend fun getPokemonInfo(pokemonName: String): Resource<Pokemon> {
         val response = try{
-            api.getPokemonInfo(pokemonName)
+            api.getPokemonInfo(pokemonName.lowercase(Locale.ROOT))
         } catch (e: Exception){
-            return Resource.Error("An unkown error occurred")
+            return Resource.Error("An unkown error occurred. ${e.message}")
         }
         return Resource.Success(response)
     }
