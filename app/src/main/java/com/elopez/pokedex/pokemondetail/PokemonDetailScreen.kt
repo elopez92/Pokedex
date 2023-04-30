@@ -99,7 +99,7 @@ fun PokemonDetailScreen(
                         contentDescription = pokemonInfo.data.name,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .size(120.dp)
+                            .size(pokemonImageSize)
                             .offset(y = topPadding),
 
                     )
@@ -148,7 +148,11 @@ fun PokemonDetailStateWrapper(
 ) {
     when(pokemonInfo){
         is Resource.Success -> {
-
+            PokemonDetailSection(
+                pokemonInfo = pokemonInfo.data!!,
+                modifier = modifier
+                    .offset(y = (-20).dp)
+            )
         }
         is Resource.Error -> {
             Text(
